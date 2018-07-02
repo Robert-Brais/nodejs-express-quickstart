@@ -7,3 +7,9 @@
 - name: tests
   service: web-codeship-example-node
   command: /bin/sh -c "npm run migrate && npm test -- --forceExit" # bash wrapper not required unless passing along env variables or combining commands
+- name: Push
+  service: app
+  type: push
+  image_name: registry.heroku.com/your_image/name
+  registry: registry.heroku.com
+  dockercfg_service: dockercfg_generator

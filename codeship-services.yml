@@ -12,3 +12,18 @@ postgres:
   environment:
     POSTGRES_USER: todoapp
     POSTGRES_DB: todos
+herokudeployment:
+  image: codeship/heroku-deployment
+  encrypted_env_file: heroku-deployment.env.encrypted
+  volumes:
+    - ./:/deploy
+app:
+  build:
+    image: registry.heroku.com/your_image/name
+    dockerfile: Dockerfile
+  encrypted_env_file: heroku-deployment.env.encrypted
+
+dockercfg_generator:
+  image: codeship/heroku-dockercfg-generator
+  add_docker: true
+  encrypted_env_file: heroku-deployment.env.encrypted
